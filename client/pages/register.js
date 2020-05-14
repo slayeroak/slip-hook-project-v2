@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import Layout from '../components/Layout';
 import axios from 'axios';
+import { showSuccessMessage, showErrorMessage } from '../helpers/alert';
 
 const Register = () => {
     const [state, setState] = useState({
-        name: '',
-        email: '',
-        password: '',
+        name: 'Captain Bob',
+        email: 'hello@sliphoo.fish',
+        password: 'rrrrrr',
         error: '',
         success: '',
         buttonText: 'Register'
@@ -20,6 +21,7 @@ const Register = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
+        setState({ ...state, buttonText: 'Registering' });
         // console.table({ name, email, password });
         axios
             .post(`http://localhost:8000/api/register`, {
@@ -27,8 +29,21 @@ const Register = () => {
                 email,
                 password
             })
-            .then(response => console.log(response))
-            .catch(error => console.log(error));
+            .then(response => {
+                console.log(response);
+                setState({
+                    ...state,
+                    name: '',
+                    email: '',
+                    password: '',
+                    buttonText: 'Submitted',
+                    success: response.data.message
+                });
+            })
+            .catch(error => {
+                console.log(error);
+                setState({ ...state, buttonText: 'Register', error: error.response.data.error });
+            });
     };
 
     const registerForm = () => (
@@ -71,9 +86,9 @@ const Register = () => {
             <div className="col-md-6 offset-md-3">
                 <h1>Register</h1>
                 <br />
+                {success && showSuccessMessage(success)}
+                {error && showErrorMessage(error)}
                 {registerForm()}
-                <hr />
-                {JSON.stringify(state)}
             </div>
         </Layout>
     );
