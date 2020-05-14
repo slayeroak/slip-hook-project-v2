@@ -195,7 +195,7 @@ var showSuccessMessage = function showSuccessMessage(success) {
 };
 var showErrorMessage = function showErrorMessage(error) {
   return __jsx("div", {
-    className: "alert alert-error",
+    className: "alert alert-danger",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 2
@@ -12097,7 +12097,7 @@ var Register = function Register() {
 
 /***/ }),
 
-/***/ 3:
+/***/ 1:
 /*!**************************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fregister&absolutePagePath=%2FUsers%2Fryanoakley%2FDesktop%2Fslip-hook-project-v2%2Fclient%2Fpages%2Fregister.js ***!
   \**************************************************************************************************************************************************************/
@@ -12120,5 +12120,5 @@ module.exports = dll_5f137288facb1107b491;
 
 /***/ })
 
-},[[3,"static/runtime/webpack.js","styles"]]]);
+},[[1,"static/runtime/webpack.js","styles"]]]);
 //# sourceMappingURL=register.js.map

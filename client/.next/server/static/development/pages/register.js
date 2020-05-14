@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -275,7 +275,7 @@ const showSuccessMessage = success => __jsx("div", {
   __self: undefined
 }, success);
 const showErrorMessage = error => __jsx("div", {
-  className: "alert alert-error",
+  className: "alert alert-danger",
   __source: {
     fileName: _jsxFileName,
     lineNumber: 2
@@ -2395,7 +2395,7 @@ const Register = () => {
 
 /***/ }),
 
-/***/ 5:
+/***/ 4:
 /*!*********************************!*\
   !*** multi ./pages/register.js ***!
   \*********************************/
