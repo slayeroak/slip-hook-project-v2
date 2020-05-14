@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -2183,6 +2183,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/Layout */ "./components/Layout.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! axios */ "axios");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_10__);
 
 
 
@@ -2198,6 +2200,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement;
 function ownKeys(object, enumerableOnly) { var keys = _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(object); if (_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default.a) { var symbols = _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default()(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_7__["default"])(target, key, source[key]); }); } else if (_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default.a) { _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default()(target, _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default()(source)); } else { ownKeys(Object(source)).forEach(function (key) { _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default()(target, key, _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(source, key)); }); } } return target; }
+
 
 
 
@@ -2233,26 +2236,27 @@ const Register = () => {
   };
 
   const handleSubmit = e => {
-    e.preventDefault();
-    console.table({
+    e.preventDefault(); // console.table({ name, email, password });
+
+    axios__WEBPACK_IMPORTED_MODULE_10___default.a.post(`http://localhost:8000/api/register`, {
       name,
       email,
       password
-    });
+    }).then(response => console.log(response)).catch(error => console.log(error));
   };
 
   const registerForm = () => __jsx("form", {
     onSubmit: handleSubmit,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 26
+      lineNumber: 35
     },
     __self: undefined
   }, __jsx("div", {
     className: "form-group",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 27
+      lineNumber: 36
     },
     __self: undefined
   }, __jsx("input", {
@@ -2261,24 +2265,6 @@ const Register = () => {
     type: "text",
     className: "form-control",
     placeholder: "Type your name",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 28
-    },
-    __self: undefined
-  })), __jsx("div", {
-    className: "form-group",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 36
-    },
-    __self: undefined
-  }, __jsx("input", {
-    value: email,
-    onChange: handleChange('email'),
-    type: "email",
-    className: "form-control",
-    placeholder: "Type your email",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 37
@@ -2292,11 +2278,11 @@ const Register = () => {
     },
     __self: undefined
   }, __jsx("input", {
-    value: password,
-    onChange: handleChange('password'),
-    type: "password",
+    value: email,
+    onChange: handleChange('email'),
+    type: "email",
     className: "form-control",
-    placeholder: "Type your password",
+    placeholder: "Type your email",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 46
@@ -2309,11 +2295,29 @@ const Register = () => {
       lineNumber: 54
     },
     __self: undefined
+  }, __jsx("input", {
+    value: password,
+    onChange: handleChange('password'),
+    type: "password",
+    className: "form-control",
+    placeholder: "Type your password",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 55
+    },
+    __self: undefined
+  })), __jsx("div", {
+    className: "form-group",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 63
+    },
+    __self: undefined
   }, __jsx("button", {
     className: "btn btn-outline-warning",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 55
+      lineNumber: 64
     },
     __self: undefined
   }, buttonText)));
@@ -2321,32 +2325,32 @@ const Register = () => {
   return __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_9__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 61
+      lineNumber: 70
     },
     __self: undefined
   }, __jsx("div", {
     className: "col-md-6 offset-md-3",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 62
+      lineNumber: 71
     },
     __self: undefined
   }, __jsx("h1", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 63
+      lineNumber: 72
     },
     __self: undefined
   }, "Register"), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 64
+      lineNumber: 73
     },
     __self: undefined
   }), registerForm(), __jsx("hr", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 66
+      lineNumber: 75
     },
     __self: undefined
   }), _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_6___default()(state)));
@@ -2356,7 +2360,7 @@ const Register = () => {
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!*********************************!*\
   !*** multi ./pages/register.js ***!
   \*********************************/
@@ -2365,6 +2369,17 @@ const Register = () => {
 
 module.exports = __webpack_require__(/*! /Users/ryanoakley/Desktop/slip-hook-project-v2/client/pages/register.js */"./pages/register.js");
 
+
+/***/ }),
+
+/***/ "axios":
+/*!************************!*\
+  !*** external "axios" ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("axios");
 
 /***/ }),
 
