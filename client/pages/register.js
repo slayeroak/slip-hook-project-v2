@@ -1,12 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
+import Router from 'next/router';
 import axios from 'axios';
-import { showSuccessMessage, showErrorMessage } from '../helpers/alert';
+import { showSuccessMessage, showErrorMessage } from '../helpers/alerts';
+import { API } from '../config';
+import { isAuth } from '../helpers/auth';
 
 const Register = () => {
     const [state, setState] = useState({
-        name: 'Captain Bob',
-        email: 'hello@sliphoo.fish',
+        name: 'Ryan',
+        email: 'hello@sliphook.fish',
         password: 'rrrrrr',
         error: '',
         success: '',
@@ -15,36 +18,64 @@ const Register = () => {
 
     const { name, email, password, error, success, buttonText } = state;
 
+    useEffect(() => {
+        isAuth() && Router.push('/');
+    }, []);
+
     const handleChange = name => e => {
         setState({ ...state, [name]: e.target.value, error: '', success: '', buttonText: 'Register' });
     };
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault();
         setState({ ...state, buttonText: 'Registering' });
-        // console.table({ name, email, password });
-        axios
-            .post(`http://localhost:8000/api/register`, {
+        try {
+            const response = await axios.post(`${API}/register`, {
                 name,
                 email,
                 password
-            })
-            .then(response => {
-                console.log(response);
-                setState({
-                    ...state,
-                    name: '',
-                    email: '',
-                    password: '',
-                    buttonText: 'Submitted',
-                    success: response.data.message
-                });
-            })
-            .catch(error => {
-                console.log(error);
-                setState({ ...state, buttonText: 'Register', error: error.response.data.error });
             });
+            console.log(response);
+            setState({
+                ...state,
+                name: '',
+                email: '',
+                password: '',
+                buttonText: 'Submitted',
+                success: response.data.message
+            });
+        } catch (error) {
+            console.log(error);
+            setState({ ...state, buttonText: 'Register', error: error.response.data.error });
+        }
     };
+
+    // const handleSubmit = e => {
+    //     e.preventDefault();
+    //     setState({ ...state, buttonText: 'Registering' });
+    //     // console.table({ name, email, password });
+    //     axios
+    //         .post(`http://localhost:8000/api/register`, {
+    //             name,
+    //             email,
+    //             password
+    //         })
+    //         .then(response => {
+    //             console.log(response);
+    //             setState({
+    //                 ...state,
+    //                 name: '',
+    //                 email: '',
+    //                 password: '',
+    //                 buttonText: 'Submitted',
+    //                 success: response.data.message
+    //             });
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //             setState({ ...state, buttonText: 'Register', error: error.response.data.error });
+    //         });
+    // };
 
     const registerForm = () => (
         <form onSubmit={handleSubmit}>
@@ -55,6 +86,7 @@ const Register = () => {
                     type="text"
                     className="form-control"
                     placeholder="Type your name"
+                    required
                 />
             </div>
             <div className="form-group">
@@ -64,6 +96,7 @@ const Register = () => {
                     type="email"
                     className="form-control"
                     placeholder="Type your email"
+                    required
                 />
             </div>
             <div className="form-group">
@@ -73,6 +106,7 @@ const Register = () => {
                     type="password"
                     className="form-control"
                     placeholder="Type your password"
+                    required
                 />
             </div>
             <div className="form-group">
