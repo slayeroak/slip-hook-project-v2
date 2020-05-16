@@ -1,5 +1,9 @@
-import Layout from '../components/Layout';
+import Layout from '../../components/Layout';
+import axios from 'axios';
+import { API } from '../../config';
+import { getCookie } from '../../helpers/auth';
+import withUser from '../withUser';
 
-const Home = () => <Layout>hello next</Layout>;
+const User = ({ user }) => <Layout>{JSON.stringify(user)}</Layout>;
 
-export default Home;
+export default withUser(User);
