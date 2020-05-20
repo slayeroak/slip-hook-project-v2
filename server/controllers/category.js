@@ -29,7 +29,7 @@ exports.create = (req, res) => {
     let category = new Category({ name, content, slug });
 
     const params = {
-        Bucket: 'hackr-kaloraat',
+        Bucket: 'sliphook',
         Key: `category/${uuidv4()}.${type}`,
         Body: base64Data,
         ACL: 'public-read',

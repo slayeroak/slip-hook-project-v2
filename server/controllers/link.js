@@ -8,9 +8,6 @@ exports.create = (req, res) => {
     let link = new Link({ title, url, categories, type, medium, slug });
     // posted by user
     link.postedBy = req.user._id;
-    // categories
-    let arrayOfCategories = categories && categories.split(',');
-    link.categories = arrayOfCategories;
     // save link
     link.save((err, data) => {
         if (err) {
@@ -43,4 +40,17 @@ exports.update = (req, res) => {
 
 exports.remove = (req, res) => {
     //
+};
+
+exports.clickCount = (req, res) => {
+    const { linkId } = req.body;
+    Link.findByIdAndUpdate(linkId, { $inc: { clicks: 1 } }, { upsert: true, new: true }).exec((err, result) => {
+        if (err) {
+            console.log(err);
+            return res.status(400).json({
+                error: 'Could not update view count'
+            });
+        }
+        res.json(result);
+    });
 };
