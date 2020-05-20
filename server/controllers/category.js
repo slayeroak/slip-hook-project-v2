@@ -7,10 +7,13 @@ const fs = require('fs');
 
 // s3
 const s3 = new AWS.S3({
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    accessKeyId: process.env.AWS_ACCESS_KEY,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
     region: process.env.AWS_REGION
 });
+
+console.log(process.env.AWS_ACCESS_KEY);
+console.log(process.env.AWS_SECRET_ACCESS_KEY);
 
 // exports.create = (req, res) => {
 //     let form = new formidable.IncomingForm();
@@ -71,11 +74,13 @@ exports.create = (req, res) => {
     const slug = slugify(name);
     let category = new Category({ name, content, slug });
 
+    // console.log(category);
+
     const params = {
-        Bucket: 'hackr-kaloraat',
+        Bucket: 'sliphook',
         Key: `category/${uuidv4()}.${type}`,
         Body: base64Data,
-        ACL: 'public-read',
+        ACL: 'public-read-write',
         ContentEncoding: 'base64',
         ContentType: `image/${type}`
     };
