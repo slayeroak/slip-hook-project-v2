@@ -6,7 +6,7 @@ import { API } from '../config';
 const Home = ({ categories }) => {
     const listCategories = () =>
         categories.map((c, i) => (
-            <Link href="/">
+            <Link href={`/links/${c.slug}`}>
                 <a style={{ border: '1px solid red' }} className="bg-light p-3 col-md-4">
                     <div>
                         <div className="row">
@@ -31,7 +31,7 @@ const Home = ({ categories }) => {
         <Layout>
             <div className="row">
                 <div className="col-md-12">
-                    <h1 className="font-weight-bold">Browse Fishing Related Tutorials</h1>
+                    <h1 className="font-weight-bold">Browse Tutorials/Courses</h1>
                     <br />
                 </div>
             </div>
