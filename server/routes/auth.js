@@ -17,7 +17,9 @@ const {
     login,
     requireSignin,
     forgotPassword,
-    resetPassword
+    resetPassword,
+    googleLogin,
+    facebookLogin
 } = require('../controllers/auth');
 
 router.post('/register', userRegisterValidator, runValidation, register);
@@ -25,6 +27,10 @@ router.post('/register/activate', registerActivate);
 router.post('/login', userLoginValidator, runValidation, login);
 router.put('/forgot-password', forgotPasswordValidator, runValidation, forgotPassword);
 router.put('/reset-password', resetPasswordValidator, runValidation, resetPassword);
+
+// google and facebook
+router.post('/google-login', googleLogin);
+router.post('/facebook-login', facebookLogin);
 
 // router.get('/secret', requireSignin, (req, res) => {
 //     res.json({

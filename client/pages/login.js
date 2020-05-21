@@ -3,6 +3,7 @@ import Layout from '../components/Layout';
 import Link from 'next/link';
 import Router from 'next/router';
 import axios from 'axios';
+import Google from './auth/google';
 import { showSuccessMessage, showErrorMessage } from '../helpers/alerts';
 import { API } from '../config';
 import { authenticate, isAuth } from '../helpers/auth';
@@ -24,6 +25,13 @@ const Login = () => {
 
     const handleChange = name => e => {
         setState({ ...state, [name]: e.target.value, error: '', success: '', buttonText: 'Login' });
+    };
+
+    //google informParent
+    const informParent = response => {
+        authenticate(response, () => {
+            isAuth() && isAuth().role === 'admin' ? history.push('/admin') : history.push('/private');
+        });
     };
 
     const handleSubmit = async e => {
@@ -79,6 +87,7 @@ const Login = () => {
                 <br />
                 {success && showSuccessMessage(success)}
                 {error && showErrorMessage(error)}
+                <Google informParent={informParent}/>
                 {loginForm()}
                 <Link href="/auth/password/forgot">
                     <a className="text-danger float-right">Forgot Password</a>

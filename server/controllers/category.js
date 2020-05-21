@@ -125,7 +125,7 @@ exports.update = (req, res) => {
 
             // handle upload image
             const params = {
-                Bucket: 'hackr-kaloraat',
+                Bucket: 'sliphook',
                 Key: `category/${uuidv4()}.${type}`,
                 Body: base64Data,
                 ACL: 'public-read',
