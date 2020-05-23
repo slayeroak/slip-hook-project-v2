@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Router from 'next/router';
 import axios from 'axios';
 import Google from './auth/google';
+import Facebook from './auth/facebook';
 import { showSuccessMessage, showErrorMessage } from '../helpers/alerts';
 import { API } from '../config';
 import { authenticate, isAuth } from '../helpers/auth';
@@ -88,6 +89,7 @@ const Login = () => {
                 {success && showSuccessMessage(success)}
                 {error && showErrorMessage(error)}
                 <Google informParent={informParent}/>
+                <Facebook informParent={informParent} />
                 {loginForm()}
                 <Link href="/auth/password/forgot">
                     <a className="text-danger float-right">Forgot Password</a>

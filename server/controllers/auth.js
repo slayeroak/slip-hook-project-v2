@@ -7,6 +7,7 @@ const { registerEmailParams, forgotPasswordEmailParams } = require('../helpers/e
 const shortId = require('shortid');
 const _ = require('lodash');
 const { OAuth2Client } = require('google-auth-library')
+const fetch = require('node-fetch');
 
 AWS.config.update({
     accessKeyId: process.env.AWS_ACCESS_KEY,
