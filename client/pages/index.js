@@ -5,6 +5,7 @@ import moment from 'moment';
 import Link from 'next/link';
 import { API } from '../config';
 
+
 const Home = ({ categories }) => {
     const [popular, setPopular] = useState([]);
 
@@ -78,6 +79,7 @@ const Home = ({ categories }) => {
             </Link>
         ));
 
+    
     return (
         <Layout>
             <div className="row">
@@ -93,7 +95,31 @@ const Home = ({ categories }) => {
                 <h2 className="font-weight-bold pb-3">Trending {popular.length}</h2>
                 {<div className="col-md-12 overflow-hidden">{listOfLinks()}</div>}
             </div>
+
+            <style jsx>{`
+            
+                background-image: url("/static/sh_background.jpg");
+                /* /  nd image is centered vertically and horizontally at all times */
+                background-position: center center;
+                /* Background image doesn't tile */
+                background-repeat: no-repeat;
+                /* Background image is fixed in the viewport so that it doesn't move when 
+                    the content's height is greater than the image's height */
+                background-attachment: fixed;
+                /* This is what makes the background image rescale based
+                    on the container's size */
+                background-size: cover;
+                background-z-index: -11;
+                /* Set a background color that will be displayed
+                    while the background image is loading */
+                background-color: #464646;
+                color: white;
+                }
+            `}</style>
         </Layout>
+
+        
+
     );
 };
 

@@ -8,6 +8,9 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/row";
 import Column from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import Header from "../components/Header";
+import Social from "./Social";
+
 
 Router.onRouteChangeStart = url => NProgress.start();
 Router.onRouteChangeComplete = url => NProgress.done();
@@ -23,73 +26,81 @@ const Layout = ({ children }) => {
                 crossOrigin="anonymous"
             />
             <link rel="stylesheet" href="/static/css/styles.css" />
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
         </React.Fragment>
     );
 
-    const nav = () => (
-        <ul className="nav nav-tabs bg-warning">
-            <li className="nav-item">
-                <Link href="/">
-                    <a className="nav-link text-dark">Home</a>
-                </Link>
-            </li>
+    // <Menu></Menu>
+    <React.Fragment>
+    <Header></Header>
+    <Social></Social>
+    </React.Fragment>
 
-            <li className="nav-item">
-                <Link href="/user/link/create">
-                    <a className="nav-link text-dark btn btn-success" style={{ borderRadius: '0px' }}>
-                        Submit a link
-                    </a>
-                </Link>
-            </li>
 
-            {!isAuth() && (
-                <React.Fragment>
-                    <li className="nav-item">
-                        <Link href="/login">
-                            <a className="nav-link text-dark">Login</a>
-                        </Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link href="/register">
-                            <a className="nav-link text-dark">Register</a>
-                        </Link>
-                    </li>
-                </React.Fragment>
-            )}
+    // const nav = () => (
+    //     <ul className="nav nav-tabs bg-warning">
+    //         <li className="nav-item">
+    //             <Link href="/">
+    //                 <a className="nav-link text-dark">Home</a>
+    //             </Link>
+    //         </li>
 
-            {isAuth() && isAuth().role === 'admin' && (
-                <li className="nav-item ml-auto">
-                    <Link href="/admin">
-                        <a className="nav-link text-dark">{isAuth().name}</a>
-                    </Link>
-                </li>
-            )}
+    //         <li className="nav-item">
+    //             <Link href="/user/link/create">
+    //                 <a className="nav-link text-dark btn btn-success" style={{ borderRadius: '0px' }}>
+    //                     Submit a link
+    //                 </a>
+    //             </Link>
+    //         </li>
 
-            {isAuth() && isAuth().role === 'subscriber' && (
-                <li className="nav-item ml-auto">
-                    <Link href="/user">
-                        <a className="nav-link text-dark">{isAuth().name}</a>
-                    </Link>
-                </li>
-            )}
+    //         {!isAuth() && (
+    //             <React.Fragment>
+    //                 <li className="nav-item">
+    //                     <Link href="/login">
+    //                         <a className="nav-link text-dark">Login</a>
+    //                     </Link>
+    //                 </li>
+    //                 <li className="nav-item">
+    //                     <Link href="/register">
+    //                         <a className="nav-link text-dark">Register</a>
+    //                     </Link>
+    //                 </li>
+    //             </React.Fragment>
+    //         )}
 
-            {isAuth() && (
-                <li className="nav-item">
-                    <a onClick={logout} className="nav-link text-dark">
-                        Logout
-                    </a>
-                </li>
-            )}
-        </ul>
-    );
+    //         {isAuth() && isAuth().role === 'admin' && (
+    //             <li className="nav-item ml-auto">
+    //                 <Link href="/admin">
+    //                     <a className="nav-link text-dark">{isAuth().name}</a>
+    //                 </Link>
+    //             </li>
+    //         )}
+
+    //         {isAuth() && isAuth().role === 'subscriber' && (
+    //             <li className="nav-item ml-auto">
+    //                 <Link href="/user">
+    //                     <a className="nav-link text-dark">{isAuth().name}</a>
+    //                 </Link>
+    //             </li>
+    //         )}
+
+    //         {isAuth() && (
+    //             <li className="nav-item">
+    //                 <a onClick={logout} className="nav-link text-dark">
+    //                     Logout
+    //                 </a>
+    //             </li>
+    //         )}
+    //     </ul>
+    // );
 
     const footer = () => {
         return (
-            <Container className = "fixed-bottom bg-secondary">
+            <footer className = "footer nav nav-bar flex-shrink: 0; container-fluid d-flex fixed-bottom bg-secondary">
                 <Row>
                     <React.Fragment>
-                        <Column className="col-md-3">
-                            <h3>Sliphook</h3>
+                        <Column className="col-md-3 text-white">
+                            <h3>Slip Hook</h3>
                         </Column>
                         <Column className="col-md-5">
                             <ul className="nav nav-tabs">
@@ -101,7 +112,7 @@ const Layout = ({ children }) => {
 
                                 <li className="nav-item">
                                     <Link href="/user/link/create">
-                                        <a className="nav-link text-dark btn btn-success" style={{ borderRadius: '0px' }}>
+                                        <a className="nav-link text-dark" style={{ borderRadius: '0px' }}>
                                             Submit a link
                                         </a>
                                     </Link>
@@ -147,9 +158,12 @@ const Layout = ({ children }) => {
                                 )}
                             </ul>
                         </Column>
+                        <Column className="col-md-4">
+                            <h3>Column 3</h3>
+                        </Column>
                     </React.Fragment>
                 </Row>
-            </Container>
+            </footer>
         );
     };
     
@@ -227,7 +241,8 @@ const Layout = ({ children }) => {
 
     return (
         <React.Fragment>
-            {head()} {nav()} {footer()}<div className="container pt-5 pb-5">{children}</div>
+             {head()} {Header()} {Social()} {footer()}
+             <div className="container pt-5 pb-5">{children}</div>
         </React.Fragment>
     );
 };

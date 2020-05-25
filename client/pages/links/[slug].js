@@ -52,7 +52,7 @@ const Links = ({ query, category, links, totalLinks, linksLimit, linkSkip }) => 
 
     const listOfPopularLinks = () =>
         popular.map((l, i) => (
-            <div key={i} className="row alert alert-secondary p-2">
+            <div key={i} className="row alert alert-secondary p-2 bg-transparent">
                 <div className="col-md-8" onClick={() => handleClick(l._id)}>
                     <a href={l.url} target="_blank">
                         <h5 className="pt-2">{l.title}</h5>
@@ -111,6 +111,8 @@ const Links = ({ query, category, links, totalLinks, linksLimit, linkSkip }) => 
                     ))}
                 </div>
             </div>
+
+ 
         ));
 
     const loadMore = async () => {
