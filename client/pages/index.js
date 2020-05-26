@@ -59,23 +59,25 @@ const Home = ({ categories }) => {
     const listCategories = () =>
         categories.map((c, i) => (
             <Link key={i} href={`/links/${c.slug}`}>
-                <a style={{ border: '1px solid red' }} className="bg-light p-3 col-md-4">
-                    <div>
-                        <div className="row">
-                            <div className="col-md-4">
-                                <img
-                                    src={c.image && c.image.url}
-                                    alt={c.name}
-                                    style={{ width: '100px', height: 'auto' }}
-                                    className="pr-3"
-                                />
-                            </div>
-                            <div className="col-md-8">
-                                <h3>{c.name}</h3>
+                <div style={{ width: '100%'}} className='container'>
+                    <a style={{ opacity: '.5', padding: '1em', textAlign: 'center', display: 'inline-block', margin: '25px'}} className="bg-light p-3 col-md-4" >
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-md-4">
+                                    <img
+                                        src={c.image && c.image.url}
+                                        alt={c.name}
+                                        style={{ width: '100px', height: 'auto' }}
+                                        className="pr-3"
+                                    />
+                                </div>
+                                <div className="col-md-8">
+                                    <h3>{c.name}</h3>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
             </Link>
         ));
 
@@ -84,12 +86,12 @@ const Home = ({ categories }) => {
         <Layout>
             <div className="row">
                 <div className="col-md-12">
-                    <h1 className="font-weight-bold">Browse Tutorials/Courses</h1>
+                    <h1 className="font-weight-bold text-center">Browse Tutorials/Courses</h1>
                     <br />
                 </div>
             </div>
 
-            <div className="row">{listCategories()}</div>
+            <div className="row text-center">{listCategories()}</div>
 
             <div className="row pt-5">
                 <h2 className="font-weight-bold pb-3">Trending {popular.length}</h2>

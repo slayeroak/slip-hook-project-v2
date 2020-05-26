@@ -18,9 +18,9 @@ function Social() {
         <React.Fragment>
              {head()}
             <div className="icon-bar">
-                <a href="https://www.facebook.com/sliphook.fish/" target="blank" className="facebook"><i class="fa fa-facebook"></i></a>
-                <a href="https://twitter.com/SliphookApp" target="blank" className="twitter"><i class="fa fa-twitter"></i></a>
-                <a href="https://www.instagram.com/sliphook.fish/" target="blank" className="instagram"><i class="fa fa-instagram"></i></a>
+                <a href="https://www.facebook.com/sliphook.fish/" target="blank" className="facebook"><i className="fa fa-facebook"></i></a>
+                <a href="https://twitter.com/SliphookApp" target="blank" className="twitter"><i className="fa fa-twitter"></i></a>
+                <a href="https://www.instagram.com/sliphook.fish/" target="blank" className="instagram"><i className="fa fa-instagram"></i></a>
             </div>
         </React.Fragment>
 
